@@ -1,1 +1,1 @@
-# profitprophet
+# Profit Prophet Application front end application
