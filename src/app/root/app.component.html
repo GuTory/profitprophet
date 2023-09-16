@@ -1,0 +1,7 @@
+<ng-container *ngIf="aaplData$ | async as AppleData">
+  <div>
+    Tickker: {{ AppleData.results ? AppleData.results[0].T : '' }}
+    High: {{ AppleData.results ? AppleData.results[0].h : '' }}
+  </div>
+</ng-container>
+<router-outlet></router-outlet>
