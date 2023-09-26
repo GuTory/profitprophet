@@ -8,7 +8,8 @@ import {
   StockChartModule,
   TooltipService
 } from "@syncfusion/ej2-angular-charts";
-import {stockData} from "./stock.data";
+import * as assert from "assert";
+import { LoadingService } from 'app/shared/service/loading/loading.service';
 
 @Component({
   selector: 'app-stock-chart',
@@ -25,8 +26,24 @@ import {stockData} from "./stock.data";
   styleUrls: ['./stock-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StockChartComponent {
+export class StockChartComponent implements OnInit{
 
-  public stockchartData: object[] = stockData
+  public stockchartData: object[] |undefined;
+  public fileContent: string | undefined;
   @Input() public title: string = 'Stock Data';
+
+constructor(public loadingService: LoadingService) {}
+
+  ngOnInit(): void {
+    this.loadingService.setIsLoading(true);
+    this.loadStockData("AAPL").then((data) => {
+      this.stockchartData = data.default;
+      //console.log(this.stockchartData);
+      this.loadingService.setIsLoading(false);
+    });
+  }
+
+  async loadStockData(ticker: string) {
+    return await import("assets/stocks/" + ticker + ".json");
+  }
 }

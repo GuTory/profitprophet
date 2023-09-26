@@ -1,0 +1,19 @@
+<ng-container *ngIf="stockchartData">
+  <ejs-stockchart
+    id="chart-container"
+    [title]="title"
+    class="shadow-lg max-w-screen-lg">
+    <e-stockchart-series-collection>
+      <e-stockchart-series
+        [dataSource]='stockchartData'
+        type='Candle'
+        xName='date'
+        High='high'
+        Low='low'
+        Open='open'
+        Close='close'
+        Name='Apple'>
+      </e-stockchart-series>
+    </e-stockchart-series-collection>
+  </ejs-stockchart>
+</ng-container>

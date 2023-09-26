@@ -8,6 +8,6 @@ export const routes: Routes = [
   },
   {
     path: 'stock',
-    loadComponent: () => import('./shared/stock-chart/stock-chart.component').then(m => m.StockChartComponent),
+    loadComponent: () => import('./shared/component/stock-chart/stock-chart.component').then(m => m.StockChartComponent),
   }
 ];

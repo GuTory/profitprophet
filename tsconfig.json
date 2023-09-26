@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -17,6 +17,13 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
+    "paths": {
+      "@assets/*": [
+        "assets/*"
+      ]
+    },
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
     "module": "ES2022",
     "useDefineForClassFields": false,
     "lib": [

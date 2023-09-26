@@ -1,1 +1,29 @@
-<router-outlet></router-outlet>
+<ng-container *ngIf="!isLoading">
+  <mat-drawer-container class="h-screen">
+    <mat-drawer #drawer class="p-6" mode="side">
+      <p>Auto-resizing sidenav</p>
+      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Toggle extra text
+      </button>
+    </mat-drawer>
+    <mat-drawer-content class="[&>*]:p-4 flex flex-col h-full">
+      <div class="fixed z-40">
+        <button type="button"  (click)="drawer.toggle(); toggleSideNav()">
+          <img [@openClose]="sideNavState" width="48" height="48"
+               src="https://img.icons8.com/material-outlined/48/chevron-left.png"
+               alt="chevron-left"/>
+        </button>
+      </div>
+      <div>
+        <router-outlet></router-outlet>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</ng-container>
+
+<ng-container *ngIf="isLoading">
+  <div class="h-screen w-screen flex flex-col justify-center items-middle">
+    <mat-progress-spinner mode=indeterminate></mat-progress-spinner>
+  </div>
+</ng-container>

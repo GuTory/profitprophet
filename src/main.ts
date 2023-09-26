@@ -9,8 +9,5 @@ import { registerLicense } from '@syncfusion/ej2-base';
 // Registering Syncfusion license key
 registerLicense(environment.syncfusionApiKey);
 
-if (environment.production) {
-  enableProdMode();
-}
 bootstrapApplication(AppComponent, appConfig)
   .catch((err) => console.error(err));
