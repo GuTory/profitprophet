@@ -1,15 +1,29 @@
 <ng-container *ngIf="!isLoading">
   <mat-drawer-container class="h-screen">
     <mat-drawer #drawer class="p-6" mode="side">
-      <p>Auto-resizing sidenav</p>
-      <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
-        Toggle extra text
-      </button>
+      <div class="flex flex-col justify-between h-full">
+        <div>
+          <form class="stock-search">
+            <form [action]="searchTicker()">
+              <mat-form-field class="example-full-width">
+                <mat-label>Ticker Lookup</mat-label>
+                <input matInput [formControl]="ticker" placeholder="Start typing a ticker...">
+              </mat-form-field>
+            </form>
+          </form>
+          <div>Favorite Stocks</div>
+          <div>My Stocks</div>
+          <div>Wallet</div>
+          <div>Profile</div>
+        </div>
+        <div>
+          <div>Log out</div>
+        </div>
+      </div>
     </mat-drawer>
     <mat-drawer-content class="[&>*]:p-4 flex flex-col h-full">
       <div class="fixed z-40">
-        <button type="button"  (click)="drawer.toggle(); toggleSideNav()">
+        <button type="button" (click)="drawer.toggle(); toggleSideNav()">
           <img [@openClose]="sideNavState" width="48" height="48"
                src="https://img.icons8.com/material-outlined/48/chevron-left.png"
                alt="chevron-left"/>

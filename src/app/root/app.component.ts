@@ -13,6 +13,9 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {animate, state, style, transition, trigger} from "@angular/animations";
+import {StockHistoryService} from "../shared/service/stock-history/stock-history.service";
+import {MatInputModule} from "@angular/material/input";
+import {FormControl, ReactiveFormsModule} from "@angular/forms";
 
 const openCloseAnimation = trigger('openClose', [
   state('open', style({transform: 'rotate(0)'})),
@@ -33,7 +36,9 @@ const openCloseAnimation = trigger('openClose', [
     StockChartComponent,
     MatButtonModule,
     MatSidenavModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [PolygonRestService, DateTimeService, TooltipService, LoadingService],
   templateUrl: './app.component.html',
@@ -44,9 +49,9 @@ const openCloseAnimation = trigger('openClose', [
 })
 export class AppComponent implements AfterViewInit{
   title = 'Profit Prophet';
-  showFiller = false;
   isLoading = true;
   sideNavState = 'close';
+  ticker = new FormControl('');
 
   constructor(public loadingService: LoadingService, private cdr: ChangeDetectorRef) {
     this.loadingService.isLoading$.pipe(takeUntilDestroyed()).subscribe((isLoading: boolean) => {
@@ -60,5 +65,9 @@ export class AppComponent implements AfterViewInit{
 
   toggleSideNav() {
     this.sideNavState = this.sideNavState === 'close' ? 'open' : 'close';
+  }
+
+  searchTicker(){
+    console.log(this.ticker.value);
   }
 }

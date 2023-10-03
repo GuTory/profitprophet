@@ -8,42 +8,43 @@ import {
   StockChartModule,
   TooltipService
 } from "@syncfusion/ej2-angular-charts";
-import * as assert from "assert";
-import { LoadingService } from 'app/shared/service/loading/loading.service';
+import {LoadingService} from 'app/shared/service/loading/loading.service';
+import {StockHistoryService} from "../../service/stock-history/stock-history.service";
+import {HttpClientModule} from "@angular/common/http";
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
   selector: 'app-stock-chart',
   standalone: true,
-  imports: [CommonModule, StockChartModule],
+  imports: [CommonModule, StockChartModule, HttpClientModule],
   providers: [
     DateTimeService,
     LegendService,
     TooltipService,
     DataLabelService,
-    CandleSeriesService
+    CandleSeriesService,
+    StockHistoryService
   ],
   templateUrl: './stock-chart.component.html',
   styleUrls: ['./stock-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StockChartComponent implements OnInit{
+export class StockChartComponent implements OnInit {
 
-  public stockchartData: object[] |undefined;
-  public fileContent: string | undefined;
+  public stockchartData: object[] | undefined;
   @Input() public title: string = 'Stock Data';
 
-constructor(public loadingService: LoadingService) {}
+  constructor(
+    public loadingService: LoadingService,
+    private stockHistoryService: StockHistoryService) {
+  }
 
   ngOnInit(): void {
     this.loadingService.setIsLoading(true);
-    this.loadStockData("AAPL").then((data) => {
-      this.stockchartData = data.default;
-      //console.log(this.stockchartData);
-      this.loadingService.setIsLoading(false);
+    this.stockHistoryService.getStockHistory("AAPL")
+      .pipe(takeUntilDestroyed())
+      .subscribe((data) => {
+      this.stockchartData = data
     });
-  }
-
-  async loadStockData(ticker: string) {
-    return await import("assets/stocks/" + ticker + ".json");
   }
 }
