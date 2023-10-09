@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IAggsPreviousClose, IRestClient, restClient} from '@polygon.io/client-js';
-import {environment} from "../../../environments/environment.development";
+import {environment} from "../../../../environments/environment.development";
 import {from, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 
@@ -10,9 +10,7 @@ import {HttpClient} from "@angular/common/http";
 export class PolygonRestService {
   rest: IRestClient;
 
-  constructor(private http: HttpClient) {
-    const res = this.http.get('http://localhost:3000/api/auth/google/login');
-    console.log(res);
+  constructor() {
     this.rest = restClient(environment.polygonApiKey);
   }
 

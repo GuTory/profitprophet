@@ -37,7 +37,6 @@ export class AuthComponent {
       if (user != null) {
         this.loggedIn = true;
       }
-      //this.router.navigate(['/']);
     });
   }
 
