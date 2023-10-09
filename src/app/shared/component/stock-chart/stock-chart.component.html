@@ -1,8 +1,13 @@
-<ng-container *ngIf="stockchartData">
+<ng-container *ngIf="stockchartData$ | async as stockchartData">
+  <div
+    class="px-20 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-gray-800">
+    {{ticker}} stock's historical price
+  </div>
+
   <ejs-stockchart
     id="chart-container"
     [title]="title"
-    class="shadow-lg max-w-screen-lg">
+    class="shadow-lg max-w-screen-lg text-gray-800">
     <e-stockchart-series-collection>
       <e-stockchart-series
         [dataSource]='stockchartData'

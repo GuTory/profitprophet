@@ -1,4 +1,4 @@
-export interface ChartDataInterface {
+export interface ChartHistoryInterface {
   date: Date;
   open: number;
   high: number;

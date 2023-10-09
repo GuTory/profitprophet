@@ -17,6 +17,7 @@ import {StockHistoryService} from "../shared/service/stock-history/stock-history
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {SidenavDirective} from "../shared/directive/sidenav/sidenav.directive";
+import {StockMetaService} from "../shared/service/stock-meta/stock-meta.service";
 
 const openCloseAnimation = trigger('openClose', [
   state('open', style({transform: 'rotate(0)'})),
@@ -42,7 +43,7 @@ const openCloseAnimation = trigger('openClose', [
     ReactiveFormsModule,
     SidenavDirective
   ],
-  providers: [PolygonRestService, DateTimeService, TooltipService, LoadingService],
+  providers: [PolygonRestService, DateTimeService, TooltipService, LoadingService, StockMetaService],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   animations: [
