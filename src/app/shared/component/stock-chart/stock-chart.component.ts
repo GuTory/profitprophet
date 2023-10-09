@@ -29,7 +29,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
   styleUrls: ['./stock-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StockChartComponent implements OnInit {
+export class StockChartComponent {
 
   public stockchartData: object[] | undefined;
   @Input() public title: string = 'Stock Data';
@@ -37,14 +37,12 @@ export class StockChartComponent implements OnInit {
   constructor(
     public loadingService: LoadingService,
     private stockHistoryService: StockHistoryService) {
-  }
-
-  ngOnInit(): void {
     this.loadingService.setIsLoading(true);
     this.stockHistoryService.getStockHistory("AAPL")
       .pipe(takeUntilDestroyed())
       .subscribe((data) => {
-      this.stockchartData = data
-    });
+        console.log(data)
+        this.stockchartData = data
+      });
   }
 }

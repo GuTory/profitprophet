@@ -16,6 +16,7 @@ import {animate, state, style, transition, trigger} from "@angular/animations";
 import {StockHistoryService} from "../shared/service/stock-history/stock-history.service";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import {SidenavDirective} from "../shared/directive/sidenav/sidenav.directive";
 
 const openCloseAnimation = trigger('openClose', [
   state('open', style({transform: 'rotate(0)'})),
@@ -38,7 +39,8 @@ const openCloseAnimation = trigger('openClose', [
     MatSidenavModule,
     MatProgressSpinnerModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SidenavDirective
   ],
   providers: [PolygonRestService, DateTimeService, TooltipService, LoadingService],
   templateUrl: './app.component.html',
@@ -68,6 +70,5 @@ export class AppComponent implements AfterViewInit{
   }
 
   searchTicker(){
-    console.log(this.ticker.value);
   }
 }
