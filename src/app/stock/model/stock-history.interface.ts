@@ -1,4 +1,4 @@
-export interface ChartHistoryInterface {
+export interface StockHistoryInterface {
   date: Date;
   open: number;
   high: number;

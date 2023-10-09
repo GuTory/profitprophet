@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {StockMeta} from "../../model/stock.meta.class";
-import {StockMetaService} from "../../service/stock-meta/stock-meta.service";
+import {StockMeta} from "../../model/stock-card.class";
+import {StockMetaService} from "../../service/card/stock-meta.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {take} from "rxjs";
 import { Router } from '@angular/router';

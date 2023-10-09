@@ -1,43 +1,17 @@
-<ng-container *ngIf="!isLoading">
-  <mat-drawer-container class="h-screen">
-    <mat-drawer #drawer class="p-6" mode="side">
-      <div class="flex flex-col justify-between h-full">
-        <div>
-          <form class="stock-search">
-            <form [action]="searchTicker()">
-              <mat-form-field class="example-full-width">
-                <mat-label>Ticker Lookup</mat-label>
-                <input matInput [formControl]="ticker" placeholder="Start typing a ticker...">
-              </mat-form-field>
-            </form>
-          </form>
-          <div appSidenav>Favorite Stocks</div>
-          <div appSidenav>My Stocks</div>
-          <div appSidenav>Wallet</div>
-          <div appSidenav>Profile</div>
-        </div>
-        <div>
-          <div appSidenav>Log out</div>
-        </div>
-      </div>
-    </mat-drawer>
-    <mat-drawer-content class="[&>*]:p-4 flex flex-col h-full">
-      <div class="fixed z-40">
-        <button type="button" (click)="drawer.toggle(); toggleSideNav()">
-          <img [@openClose]="sideNavState" width="48" height="48"
-               src='assets/icons/chevron-left.png'
-               alt="chevron-left"/>
-        </button>
-      </div>
-      <div>
-        <router-outlet></router-outlet>
-      </div>
-    </mat-drawer-content>
-  </mat-drawer-container>
-</ng-container>
-
-<ng-container *ngIf="isLoading">
-  <div class="h-screen w-screen flex flex-col justify-center items-middle">
-    <mat-progress-spinner mode=indeterminate></mat-progress-spinner>
-  </div>
-</ng-container>
+<mat-drawer-container class="h-screen">
+  <mat-drawer #drawer class="p-6" mode="side">
+    <app-drawer></app-drawer>
+  </mat-drawer>
+  <mat-drawer-content class="[&>*]:p-4 flex flex-col h-full">
+    <div class="fixed z-40">
+      <button type="button" (click)="drawer.toggle(); toggleSideNav()">
+        <img [@openClose]="sideNavState" width="48" height="48"
+             src='assets/icons/chevron-left.png'
+             alt="chevron-left"/>
+      </button>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

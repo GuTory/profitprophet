@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {StockMeta} from "../../model/stock.meta.class";
+import {StockMeta} from "../../model/stock-card.class";
 import {environment} from "../../../../environments/environment.development";
 import {map, Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";

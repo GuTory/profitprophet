@@ -8,10 +8,8 @@ import {
   StockChartModule,
   TooltipService
 } from "@syncfusion/ej2-angular-charts";
-import {LoadingService} from 'app/shared/service/loading/loading.service';
-import {StockHistoryService} from "../../service/stock-history/stock-history.service";
+import {StockHistoryService} from "../../service/history/stock-history.service";
 import {HttpClientModule} from "@angular/common/http";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import { ActivatedRoute } from '@angular/router';
 import {Observable, switchMap} from "rxjs";
 
@@ -27,11 +25,11 @@ import {Observable, switchMap} from "rxjs";
     CandleSeriesService,
     StockHistoryService
   ],
-  templateUrl: './stock-chart.component.html',
-  styleUrls: ['./stock-chart.component.scss'],
+  templateUrl: './stock-history.component.html',
+  styleUrls: ['./stock-history.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class StockChartComponent {
+export class StockHistoryComponent {
 
   public stockchartData$: Observable<object[]>;
   public ticker: string = '';
