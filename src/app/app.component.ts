@@ -2,22 +2,22 @@ import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@a
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
-import {PolygonRestService} from "../stock/service/polygon-rest/polygon-rest.service";
+import {PolygonRestService} from "./stock/service/polygon-rest/polygon-rest.service";
 import {DateTimeService, StockChartModule, TooltipService} from "@syncfusion/ej2-angular-charts";
-import {AuthComponent} from "../auth/auth.component";
-import {StockHistoryComponent} from "../stock/component/history/stock-history.component";
+import {AuthComponent} from "./auth/auth.component";
+import {StockHistoryComponent} from "./stock/component/history/stock-history.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDrawer, MatSidenavModule} from "@angular/material/sidenav";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {StockHistoryService} from "../stock/service/history/stock-history.service";
+import {StockHistoryService} from "./stock/service/history/stock-history.service";
 import {MatInputModule} from "@angular/material/input";
 import {FormControl, ReactiveFormsModule} from "@angular/forms";
-import {SidenavDirective} from "../shared/directive/sidenav/sidenav.directive";
-import {StockMetaService} from "../stock/service/card/stock-meta.service";
-import {DrawerComponent} from "../drawer/drawer.component";
+import {SidenavDirective} from "./shared/directive/sidenav/sidenav.directive";
+import {StockMetaService} from "./stock/service/meta/stock-meta.service";
+import {DrawerComponent} from "./shared/component/drawer/drawer.component";
 
 const openCloseAnimation = trigger('openClose', [
   state('open', style({transform: 'rotate(0)'})),

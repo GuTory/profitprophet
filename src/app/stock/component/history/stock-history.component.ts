@@ -33,7 +33,7 @@ export class StockHistoryComponent {
 
   public stockchartData$: Observable<object[]>;
   public ticker: string = '';
-  @Input() public title: string = 'Stock Data';
+  public title: string = 'Historic Data';
 
   constructor(
     private stockHistoryService: StockHistoryService,

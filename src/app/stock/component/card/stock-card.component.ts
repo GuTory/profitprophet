@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {StockMeta} from "../../model/stock-card.class";
-import {StockMetaService} from "../../service/card/stock-meta.service";
+import {StockMeta} from "../../model/stock-meta.class";
+import {StockMetaService} from "../../service/meta/stock-meta.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {take} from "rxjs";
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-stock-card',
+  selector: 'app-stock-meta',
   standalone: true,
   imports: [CommonModule],
   templateUrl: './stock-card.component.html',
@@ -55,7 +55,7 @@ export class StockCardComponent {
     }
   }
 
-  viewStockHistory(ticker: StockMeta) {
-    this.router.navigate(['/stockhistory/', ticker.Symbol]);
+  viewStockHistory(stock: StockMeta) {
+    this.router.navigate(['/stockhistory/', stock.Symbol]);
   }
 }

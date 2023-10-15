@@ -13,5 +13,9 @@ export const routes: Routes = [
   {
     path: 'stockhistory/:ticker',
     loadComponent: () => import('./stock/component/history/stock-history.component').then(m => m.StockHistoryComponent),
+  },
+  {
+    path: 'searchticker/:ticker',
+    loadComponent: () => import('./searchresult/search-result.component').then(m => m.SearchResultComponent),
   }
 ];
