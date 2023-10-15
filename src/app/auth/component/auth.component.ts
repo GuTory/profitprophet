@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {
   GoogleLoginProvider,
@@ -11,6 +11,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {Router, RouterOutlet} from "@angular/router";
 import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {AuthService} from "../service/auth.service";
+import {UserInterface} from "../../shared/model/user.interface";
 
 @Component({
   selector: 'app-auth',
@@ -22,33 +24,31 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
     RouterOutlet,
     GoogleSigninButtonModule
   ],
-  providers: [],
+  providers: [AuthService],
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+  user$: Observable<SocialUser> = this.authService.user$.pipe(takeUntilDestroyed());
+  authenticatedUser: UserInterface | null = null;
 
-  accessToken: string = '';
-  user$: Observable<SocialUser> = this.authService.authState;
-  loggedIn: boolean = false;
-
-  constructor(private authService: SocialAuthService, private router: Router) {
-    this.user$.pipe(takeUntilDestroyed()).subscribe((user) => {
-      if (user != null) {
-        this.loggedIn = true;
-      }
-    });
+  constructor(private authService: AuthService, private router: Router) {
+    this.user$.subscribe(user => {
+      this.authService.authenticateUser(user).pipe().subscribe((user: UserInterface | null) => {
+        this.authenticatedUser = user;
+      });
+    })
   }
 
   getAccessToken(): void {
-    this.authService.getAccessToken(GoogleLoginProvider.PROVIDER_ID).then(accessToken => this.accessToken = accessToken);
+    this.authService.getAccessToken();
   }
 
-  refreshToken(): void {
-    this.authService.refreshAuthToken(GoogleLoginProvider.PROVIDER_ID);
+  async refreshToken() {
+    await this.authService.refreshToken();
   }
 
-  logOut(){
-    this.authService.signOut();
+  async logOut(){
+    await this.authService.signOut();
   }
 }

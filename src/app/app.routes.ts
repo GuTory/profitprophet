@@ -16,6 +16,6 @@ export const routes: Routes = [
   },
   {
     path: 'searchticker/:ticker',
-    loadComponent: () => import('./searchresult/search-result.component').then(m => m.SearchResultComponent),
+    loadComponent: () => import('./stock/component/searchresult/search-result.component').then(m => m.SearchResultComponent),
   }
 ];

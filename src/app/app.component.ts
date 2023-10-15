@@ -4,7 +4,7 @@ import {RouterOutlet} from '@angular/router';
 import {HttpClientModule} from "@angular/common/http";
 import {PolygonRestService} from "./stock/service/polygon-rest/polygon-rest.service";
 import {DateTimeService, StockChartModule, TooltipService} from "@syncfusion/ej2-angular-charts";
-import {AuthComponent} from "./auth/auth.component";
+import {AuthComponent} from "./auth/component/auth.component";
 import {StockHistoryComponent} from "./stock/component/history/stock-history.component";
 import {MatButtonModule} from "@angular/material/button";
 import {MatDrawer, MatSidenavModule} from "@angular/material/sidenav";

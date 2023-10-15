@@ -1,9 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Observable, switchMap} from "rxjs";
-import {StockMeta} from "../stock/model/stock-meta.class";
-import {StockMetaService} from "../stock/service/meta/stock-meta.service";
+import {StockMeta} from "../../model/stock-meta.class";
+import {StockMetaService} from "../../service/meta/stock-meta.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Component({
@@ -27,7 +27,6 @@ export class SearchResultComponent {
       takeUntilDestroyed(),
       switchMap(params => {
         this.ticker = params.get('ticker') || '';
-        console.log("update " + this.ticker);
         return this.stockMetaService.getStockByTicker(this.ticker);
       })
     );
@@ -36,6 +35,4 @@ export class SearchResultComponent {
   viewStockHistory(stock: StockMeta) {
     this.router.navigate(['/stockhistory/', stock.Symbol]);
   }
-
-  protected readonly StockMeta = StockMeta;
 }

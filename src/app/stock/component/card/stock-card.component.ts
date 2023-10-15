@@ -50,8 +50,6 @@ export class StockCardComponent {
           });
           this.paging--;
         });
-    } else {
-      console.log("No previous page");
     }
   }
 
