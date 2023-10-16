@@ -1,18 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {
-  GoogleLoginProvider,
-  GoogleSigninButtonModule,
-  SocialAuthService,
-  SocialAuthServiceConfig,
-  SocialLoginModule, SocialUser
-} from "@abacritt/angularx-social-login";
+import {GoogleSigninButtonModule, SocialLoginModule} from "@abacritt/angularx-social-login";
 import {HttpClientModule} from "@angular/common/http";
 import {Router, RouterOutlet} from "@angular/router";
-import {Observable} from "rxjs";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {AuthService} from "../service/auth.service";
-import {UserInterface} from "../../shared/model/user.interface";
+import {UserInterface} from "../model/user.interface";
 
 @Component({
   selector: 'app-auth',
@@ -29,14 +21,14 @@ import {UserInterface} from "../../shared/model/user.interface";
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-  user$: Observable<SocialUser> = this.authService.user$.pipe(takeUntilDestroyed());
   authenticatedUser: UserInterface | null = null;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.user$.subscribe(user => {
-      this.authService.authenticateUser(user).pipe().subscribe((user: UserInterface | null) => {
-        this.authenticatedUser = user;
-      });
+    this.authService.authenticatedUser.subscribe(user => {
+      this.authenticatedUser = user;
+      if(this.authenticatedUser !== null) {
+        this.router.navigate(['/']);
+      }
     })
   }
 
@@ -48,7 +40,7 @@ export class AuthComponent {
     await this.authService.refreshToken();
   }
 
-  async logOut(){
+  async logOut() {
     await this.authService.signOut();
   }
 }

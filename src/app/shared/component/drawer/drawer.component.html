@@ -1,5 +1,13 @@
 <div class="flex flex-col justify-between h-full">
   <div>
+    <ng-container *ngIf="authenticatedUser">
+      <div appSidenav class="flex flex-row items-center mb-4">
+        <img class="w-16 h-16 rounded-full p-2" [src]="authenticatedUser.photoUrl"
+             [alt]="authenticatedUser.name">
+        <div class="ml-4">{{authenticatedUser.name}}</div>
+      </div>
+    </ng-container>
+
     <form class="stock-search">
       <form (ngSubmit)="searchTicker()">
         <mat-form-field class="example-full-width">
@@ -14,6 +22,6 @@
     <div appSidenav>Profile</div>
   </div>
   <div>
-    <div appSidenav>Log out</div>
+    <div (click)="loginOrLogout()" appSidenav>{{this.logStatusText()}}</div>
   </div>
 </div>

@@ -1,21 +1,27 @@
 import {Injectable} from '@angular/core';
 import {GoogleLoginProvider, SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
 import {Router} from "@angular/router";
-import {Observable, of, switchMap} from "rxjs";
+import {BehaviorSubject, Observable, of, Subject, switchMap} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {HttpClient} from '@angular/common/http';
-import {mapSocialUserToUserInterface, UserInterface} from "../../shared/model/user.interface";
+import {mapSocialUserToUserInterface, UserInterface} from "../model/user.interface";
 import {environment} from "../../../environments/environment.development";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  authenticatedUser: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null);
 
   accessToken: string = '';
-  user$: Observable<SocialUser> = this.authService.authState;
 
-  constructor(private authService: SocialAuthService, private router: Router, private http: HttpClient) {}
+  constructor(private authService: SocialAuthService, private router: Router, private http: HttpClient) {
+    this.authService.authState.pipe(takeUntilDestroyed()).subscribe((user: SocialUser | null) => {
+      this.authenticateUser(user).subscribe((returnedUser: UserInterface | null) => {
+        this.authenticatedUser.next(returnedUser);
+      });
+    });
+  }
 
   authenticateUser(user: SocialUser | null): Observable<UserInterface | null> {
     if (user === null){
