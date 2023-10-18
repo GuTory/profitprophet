@@ -1,7 +1,6 @@
 import {Component} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {GoogleSigninButtonModule, SocialLoginModule} from "@abacritt/angularx-social-login";
-import {HttpClientModule} from "@angular/common/http";
 import {Router, RouterOutlet} from "@angular/router";
 import {AuthService} from "../service/auth.service";
 import {UserInterface} from "../model/user.interface";
@@ -12,7 +11,6 @@ import {UserInterface} from "../model/user.interface";
   imports: [
     CommonModule,
     SocialLoginModule,
-    HttpClientModule,
     RouterOutlet,
     GoogleSigninButtonModule
   ],

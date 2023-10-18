@@ -9,14 +9,13 @@ import {
   TooltipService
 } from "@syncfusion/ej2-angular-charts";
 import {StockHistoryService} from "../../service/history/stock-history.service";
-import {HttpClientModule} from "@angular/common/http";
 import { ActivatedRoute } from '@angular/router';
 import {Observable, switchMap} from "rxjs";
 
 @Component({
   selector: 'app-stock-chart',
   standalone: true,
-  imports: [CommonModule, StockChartModule, HttpClientModule],
+  imports: [CommonModule, StockChartModule],
   providers: [
     DateTimeService,
     LegendService,

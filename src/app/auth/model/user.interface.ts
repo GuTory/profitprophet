@@ -15,6 +15,7 @@ export interface UserInterface {
 
   // custom fields
   subscription: 'Basic' | 'Pro';
+  favoriteStocks: string[];
 }
 
 export function mapSocialUserToUserInterface(user: SocialUser): UserInterface {
@@ -32,6 +33,7 @@ export function mapSocialUserToUserInterface(user: SocialUser): UserInterface {
     response: user.response,
 
     // custom fields with basic values
-    subscription: 'Basic'
+    subscription: 'Basic',
+    favoriteStocks: []
   }
 }

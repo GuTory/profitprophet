@@ -5,9 +5,11 @@ import {routes} from './app.routes';
 import {GoogleLoginProvider, SocialAuthServiceConfig} from "@abacritt/angularx-social-login";
 import {environment} from "../environments/environment.development";
 import { provideAnimations } from '@angular/platform-browser/animations';
+import {provideHttpClient} from "@angular/common/http";
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideHttpClient(),
     provideRouter(routes),
     {
         provide: 'SocialAuthServiceConfig',

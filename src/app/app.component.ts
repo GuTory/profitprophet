@@ -1,7 +1,6 @@
 import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
-import {HttpClientModule} from "@angular/common/http";
 import {PolygonRestService} from "./stock/service/polygon-rest/polygon-rest.service";
 import {DateTimeService, StockChartModule, TooltipService} from "@syncfusion/ej2-angular-charts";
 import {AuthComponent} from "./auth/component/auth.component";
@@ -32,7 +31,6 @@ const openCloseAnimation = trigger('openClose', [
   imports: [
     CommonModule,
     RouterOutlet,
-    HttpClientModule,
     StockChartModule,
     AuthComponent,
     StockHistoryComponent,
