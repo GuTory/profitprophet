@@ -1,6 +1,6 @@
 <div class="flex flex-col justify-between">
   <div
-    class="px-20 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-gray-800">
+    class="px-20 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-primary">
     Search results
   </div>
   <ng-container *ngIf="stockMetaData$ | async as stock">
@@ -14,15 +14,15 @@
         </div>
         <div class="px-6 pt-4 pb-2">
       <span [ngClass]="stock.NasdaqTraded === 'Y' ? 'bg-green-400' : 'bg-red-400' "
-            class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">
+            class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-primary mr-2 mb-2">
         Nasdaq traded
       </span>
           <span [ngClass]="stock.NextShares === 'Y' ? 'bg-green-400' : 'bg-red-400' "
-                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">
+                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-primary mr-2 mb-2">
         NextShares
       </span>
           <span *ngIf="stock.ETF === 'Y'"
-                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">
+                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-primary mr-2 mb-2">
         ETF
       </span>
         </div>

@@ -7,6 +7,7 @@ module.exports = {
     extend: {
       colors: {
         yahoo: '#430297',
+        primary: '#1F2937',
       },
     },
   },

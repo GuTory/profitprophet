@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AuthService} from "../../../auth/service/auth.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {UserInterface} from "../../../auth/model/user.interface";
@@ -10,9 +10,12 @@ import {take} from "rxjs";
   providedIn: 'root',
 })
 export class FavoriteService {
+  private authService = inject(AuthService);
+  private http = inject(HttpClient)
+
   authenticatedUser: UserInterface | null = null;
 
-  constructor(private authService: AuthService, private http: HttpClient) {
+  constructor() {
     this.authService.authenticatedUser.pipe(takeUntilDestroyed()).subscribe(user => {
       this.authenticatedUser = user;
     });

@@ -8,13 +8,10 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class PolygonRestService {
-  rest: IRestClient;
-
-  constructor() {
-    this.rest = restClient(environment.polygonApiKey);
-  }
+  rest: IRestClient = restClient(environment.polygonApiKey)
 
   getPreviousClose(ticker: string): Observable<IAggsPreviousClose> {
+    console.log(ticker);
     return from(this.rest.stocks.previousClose(ticker));
   }
 }

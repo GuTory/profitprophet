@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {FormControl, FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -19,10 +19,13 @@ import {UserInterface} from "../../../auth/model/user.interface";
   styleUrls: ['./drawer.component.scss']
 })
 export class DrawerComponent {
+  private router = inject(Router);
+  private authService = inject(AuthService);
+
   ticker = new FormControl('');
   authenticatedUser: UserInterface | null = null;
 
-  constructor(private router: Router, private authService: AuthService) {
+  constructor() {
     this.authService.authenticatedUser.pipe(takeUntilDestroyed()).subscribe((user: UserInterface | null) => {
       this.authenticatedUser = user;
     });

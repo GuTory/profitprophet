@@ -1,6 +1,6 @@
 <div class="flex flex-col justify-between">
   <div
-    class="px-20 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-gray-800">
+    class="px-20 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-primary">
     Stock List
   </div>
   <ng-container *ngIf="stocks">
@@ -21,19 +21,19 @@
             </div>
           </ng-container>
           <span [ngClass]="stock.NasdaqTraded === 'Y' ? 'bg-green-400' : 'bg-red-400' "
-                class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">
+                class="inline-block rounded-full px-3 py-1 text-sm font-semibold text-primary mr-2 mb-2">
             Nasdaq traded
           </span>
           <span [ngClass]="stock.NextShares === 'Y' ? 'bg-green-400' : 'bg-red-400' "
-                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">
+                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-primary mr-2 mb-2">
             NextShares
           </span>
           <span *ngIf="stock.ETF === 'Y'"
-                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 mb-2">
+                class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-primary mr-2 mb-2">
             ETF
           </span>
           <span click-stop-propagation (click)="yahooFinanceLink(stock)"
-                class="inline-block bg-yahoo rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2">
+                class="inline-block bg-yahoo rounded-full px-3 py-1 text-sm font-semibold text-white mr-2 mb-2 cursor-pointer">
             Yahoo
           </span>
         </div>
@@ -44,11 +44,11 @@
     <div class="max-w-xl flex flex-row justify-between">
       <button (click)="prevPage()"
               [disabled]="paging === 0"
-              class="flex flex-row items-center px-6 py-3 text-gray-800 hover:bg-gray-700 hover:text-amber-50 rounded disabled:duration-500 disabled:opacity-50">
+              class="flex flex-row items-center px-6 py-3 text-primary hover:bg-gray-700 hover:text-amber-50 rounded disabled:duration-500 disabled:opacity-50">
         Previous
       </button>
       <button (click)="nextPage()"
-              class="flex flex-row items-center px-6 py-3 text-gray-800 hover:bg-gray-700 hover:text-amber-50 hover:duration-500 rounded">
+              class="flex flex-row items-center px-6 py-3 text-primary hover:bg-gray-700 hover:text-amber-50 hover:duration-500 rounded">
         Next
       </button>
     </div>

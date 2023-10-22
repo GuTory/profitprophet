@@ -1,24 +1,58 @@
 <ng-container *ngIf="stockchartData$ | async as stockchartData">
   <div
-    class="px-20 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-gray-800">
+    class="px-16 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-primary">
     {{ticker}} stock's historical price
   </div>
 
-  <ejs-stockchart
-    id="chart-container"
-    [title]="title"
-    class="shadow-lg max-w-screen-lg text-gray-800">
-    <e-stockchart-series-collection>
-      <e-stockchart-series
-        [dataSource]='stockchartData'
-        type='Candle'
-        xName='date'
-        High='high'
-        Low='low'
-        Open='open'
-        Close='close'
-        Name='Apple'>
-      </e-stockchart-series>
-    </e-stockchart-series-collection>
-  </ejs-stockchart>
+  <div class="px-16 max-w-screen-lg">
+    <ejs-stockchart
+      id="chart-container"
+      [title]="title"
+      class="shadow-lg text-primary">
+      <e-stockchart-series-collection>
+        <e-stockchart-series
+          [dataSource]='stockchartData'
+          type='Candle'
+          xName='date'
+          High='high'
+          Low='low'
+          Open='open'
+          Close='close'
+          Name='stockChart'>
+        </e-stockchart-series>
+      </e-stockchart-series-collection>
+    </ejs-stockchart>
+
+  </div>
+  <div *ngIf="previousClose?.results?.[0] as previous"
+       class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+    <mat-card>
+      <mat-card-content>
+        <div
+          class="pt-6 pb-6 text-3xl">
+          Recent data of {{ticker}}
+        </div>
+        <div>
+          The open price: {{previous?.o | currency: 'USD': 'symbol'}}
+        </div>
+        <div>
+          The highest price: {{previous?.h | currency: 'USD': 'symbol'}}
+        </div>
+        <div>
+          The lowest price: {{previous?.l | currency: 'USD': 'symbol'}}
+        </div>
+        <div>
+          The close price: {{previous?.c | currency: 'USD': 'symbol'}}
+        </div>
+        <div>
+          The volume weighted average price: {{previous?.vw | currency: 'USD': 'symbol'}}
+        </div>
+        <div>
+          The trading volume: {{previous?.v }}
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </ng-container>

@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, inject, Inject} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {StockMeta} from "../../model/stock-meta.class";
 import {StockMetaService} from "../../service/meta/stock-meta.service";
@@ -8,24 +8,27 @@ import {FavoriteService} from 'app/stock/service/favorite/favorite.service';
 import {
   ClickStopPropagationDirective
 } from "../../../shared/directive/click-stop-propagation/click-stop-propagation.directive";
+import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-stock-meta',
   standalone: true,
-  imports: [CommonModule, ClickStopPropagationDirective, RouterLink],
+  imports: [CommonModule, ClickStopPropagationDirective, RouterLink, MatSnackBarModule],
   providers: [FavoriteService],
   templateUrl: './stock-card.component.html',
   styleUrls: ['./stock-card.component.scss']
 })
 export class StockCardComponent {
+  private document = inject(DOCUMENT);
+  private stockMetaService = inject(StockMetaService);
+  private router = inject(Router);
+  public favoriteService = inject(FavoriteService);
+  private snackBar = inject(MatSnackBar);
+
   public stocks: StockMeta[] = [];
   public paging: number = 0;
 
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    private stockMetaService: StockMetaService,
-    private router: Router,
-    public favoriteService: FavoriteService) {
+  constructor() {
     this.stockMetaService.getStocksByPage()
       .pipe(take(1))
       .subscribe((stocks) => {
@@ -86,12 +89,21 @@ export class StockCardComponent {
   togglefavorite(stock: StockMeta) {
     if (this.favoriteService.authenticatedUser?.favoriteStocks.includes(stock.Symbol)) {
       this.removeFavorite(stock);
+      this.openSnackBar(stock.Symbol + " removed from favorites", "Dismiss");
     } else {
       this.addFavorite(stock);
+      this.openSnackBar(stock.Symbol + " added to favorites", "Dismiss");
     }
   }
 
   yahooFinanceLink(stock: StockMeta) {
     this.document.location.href = "https://finance.yahoo.com/quote/" + stock.Symbol;
+  }
+
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+      duration: 5000,
+      horizontalPosition: 'right',
+    });
   }
 }

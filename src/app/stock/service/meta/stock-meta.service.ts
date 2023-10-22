@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {StockMeta} from "../../model/stock-meta.class";
 import {environment} from "../../../../environments/environment.development";
@@ -8,11 +8,9 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class StockMetaService {
+  private http = inject(HttpClient);
+
   private stocks: StockMeta[] = [];
-
-  constructor(private http: HttpClient) {
-  }
-
   public getStocksByPage(): Observable<any[]> {
     return this.http.get<any[]>(environment.localBackendBaseUrl + environment.pageUrl);
   }

@@ -1,13 +1,14 @@
-import { Directive, ElementRef } from '@angular/core';
+import {Directive, ElementRef, inject} from '@angular/core';
 
 @Directive({
   selector: '[appSidenav]',
   standalone: true
 })
 export class SidenavDirective {
+  private el = inject(ElementRef);
 
-  constructor(private el: ElementRef) {
-    this.el.nativeElement.classList.add('text-gray-800',
+  constructor() {
+    this.el.nativeElement.classList.add('text-primary',
       'hover:bg-gray-700',
       'hover:text-amber-50',
       'rounded-md',

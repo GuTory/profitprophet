@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, computed, inject, Signal} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {GoogleSigninButtonModule, SocialLoginModule} from "@abacritt/angularx-social-login";
 import {Router, RouterOutlet} from "@angular/router";
@@ -19,15 +19,20 @@ import {UserInterface} from "../model/user.interface";
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
-  authenticatedUser: UserInterface | null = null;
+  private authService = inject(AuthService);
+  private router = inject(Router);
 
-  constructor(private authService: AuthService, private router: Router) {
+  authenticatedUser: Signal<UserInterface | null>= computed(() => this.authService.authenticatedUser.value);
+
+  constructor() {
+    /** Power of Signals
     this.authService.authenticatedUser.subscribe(user => {
       this.authenticatedUser = user;
       if(this.authenticatedUser !== null) {
         this.router.navigate(['/']);
       }
     })
+      */
   }
 
   getAccessToken(): void {
