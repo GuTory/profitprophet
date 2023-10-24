@@ -3,7 +3,7 @@
     <ng-container *ngIf="authenticatedUser">
       <div appSidenav class="flex flex-row items-center mb-4">
         <img class="w-16 h-16 rounded-full p-2" [src]="authenticatedUser.photoUrl"
-             [alt]="authenticatedUser.name">
+             [alt]="authenticatedUser.name" referrerpolicy="no-referrer">
         <div class="ml-4">{{authenticatedUser.name}}</div>
       </div>
     </ng-container>
