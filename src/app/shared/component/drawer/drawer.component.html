@@ -1,0 +1,27 @@
+<div class="flex flex-col justify-between h-full">
+  <div>
+    <ng-container *ngIf="authenticatedUser">
+      <div appSidenav class="flex flex-row items-center mb-4">
+        <img class="w-16 h-16 rounded-full p-2" [src]="authenticatedUser.photoUrl"
+             [alt]="authenticatedUser.name" referrerpolicy="no-referrer">
+        <div class="ml-4">{{authenticatedUser.name}}</div>
+      </div>
+    </ng-container>
+
+    <form class="stock-search">
+      <form (ngSubmit)="searchTicker()">
+        <mat-form-field class="example-full-width">
+          <mat-label>Ticker Lookup</mat-label>
+          <input matInput [formControl]="ticker" placeholder="Start typing a ticker...">
+        </mat-form-field>
+      </form>
+    </form>
+    <div appSidenav>Favorite Stocks</div>
+    <div appSidenav>My Stocks</div>
+    <div appSidenav>Wallet</div>
+    <div appSidenav>Profile</div>
+  </div>
+  <div>
+    <div (click)="loginOrLogout()" appSidenav>{{this.logStatusText()}}</div>
+  </div>
+</div>
