@@ -55,4 +55,17 @@
     </mat-card>
   </div>
 
+  <div *ngIf="this.prediction$ | async as prediction"
+       class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+    <mat-card>
+      <mat-card-content>
+        <div
+          class="pt-6 pb-6 text-3xl">
+          Profit Prophet's prediction
+        </div>
+        {{prediction | currency: 'USD': 'symbol'}}
+      </mat-card-content>
+    </mat-card>
+  </div>
+
 </ng-container>
