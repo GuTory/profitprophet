@@ -24,17 +24,6 @@ export class AuthComponent {
 
   authenticatedUser: Signal<UserInterface | null>= computed(() => this.authService.authenticatedUser.value);
 
-  constructor() {
-    /** Power of Signals
-    this.authService.authenticatedUser.subscribe(user => {
-      this.authenticatedUser = user;
-      if(this.authenticatedUser !== null) {
-        this.router.navigate(['/']);
-      }
-    })
-      */
-  }
-
   getAccessToken(): void {
     this.authService.getAccessToken();
   }

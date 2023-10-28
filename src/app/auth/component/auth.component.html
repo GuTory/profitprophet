@@ -4,11 +4,9 @@
       <div class="flex justify-center">
         <div class="font-bold text-xl mb-2">Log in with Google</div>
       </div>
-      <ng-container *ngIf="!(authenticatedUser)">
-        <div class="w-full flex justify-center px-6 pt-4 mb-4 flex-col">
-          <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
-        </div>
-      </ng-container>
+      <div class="w-full flex justify-center px-6 pt-4 mb-4 flex-col">
+        <asl-google-signin-button type="standard" size="large"></asl-google-signin-button>
+      </div>
     </div>
   </div>
   <img class="h-screen hidden lg:flex object-cover shadow-lg" src="/assets/login_stock_mac.jpg"
