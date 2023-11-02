@@ -13,3 +13,6 @@ The magic of predicting happens at https://github.com/GuTory/profitprophetbacken
 
 ![image](https://github.com/GuTory/profitprophetfrontend/assets/77408486/6e20af8f-a66f-4508-95a2-b03b0c53d3f9)
 *Predictions are being fetched from the back end*
+
+![image](https://github.com/GuTory/profitprophetfrontend/assets/77408486/0fb3975a-4e9c-48b7-9478-de3fc4ad6f72)
+*Logged in users can add stocks to their favorites*
