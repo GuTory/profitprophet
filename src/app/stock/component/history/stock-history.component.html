@@ -1,4 +1,5 @@
-<ng-container *ngIf="stockchartData$ | async as stockchartData">
+<ng-container *ngIf="stockchartData$ | async as stockchartData; else loadingStockChart">
+
   <div
     class="px-16 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-primary">
     {{ticker}} stock's historical price
@@ -55,8 +56,8 @@
     </mat-card>
   </div>
 
-  <div *ngIf="this.prediction$ | async as prediction"
-       class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+  <div *ngIf="this.prediction$ | async as prediction; else loadingPrediction"
+                class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
     <mat-card>
       <mat-card-content>
         <div
@@ -67,5 +68,49 @@
       </mat-card-content>
     </mat-card>
   </div>
-
 </ng-container>
+
+<ng-template #loadingPrediction>
+  <div class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+    <mat-card>
+      <mat-card-content>
+        <div
+          class="pt-6 pb-6 text-3xl">
+          Profit Prophet's predicting
+        </div>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
+
+<ng-template #loadingStockChart>
+  <div
+    class="px-16 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-primary">
+    Loading {{ticker}} stock's historical price
+  </div>
+
+  <div class="px-16 max-w-screen-lg">
+    <mat-card>
+      <mat-card-content>
+        <div
+          class="pt-6 pb-6 text-3xl">
+          Loading historical data
+        </div>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+    <mat-card>
+      <mat-card-content>
+        <div
+          class="pt-6 pb-6 text-3xl">
+          Loading yesterday's data from Polygon
+        </div>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</ng-template>
