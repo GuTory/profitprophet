@@ -16,11 +16,13 @@ import {IAggsPreviousClose} from '@polygon.io/client-js';
 import {MatTableModule} from "@angular/material/table";
 import {MatCardModule} from "@angular/material/card";
 import {PredictionService} from 'app/stock/service/prediction/prediction.service';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-stock-chart',
   standalone: true,
-  imports: [CommonModule, StockChartModule, MatTableModule, MatCardModule],
+  imports: [CommonModule, StockChartModule, MatTableModule, MatCardModule, MatProgressBarModule, MatProgressSpinnerModule],
   providers: [
     DateTimeService,
     LegendService,
