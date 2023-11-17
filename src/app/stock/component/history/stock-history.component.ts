@@ -18,11 +18,12 @@ import {MatCardModule} from "@angular/material/card";
 import {PredictionService} from 'app/stock/service/prediction/prediction.service';
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {TitleDirective} from "../../../shared/directive/title/title.directive";
 
 @Component({
   selector: 'app-stock-chart',
   standalone: true,
-  imports: [CommonModule, StockChartModule, MatTableModule, MatCardModule, MatProgressBarModule, MatProgressSpinnerModule],
+  imports: [CommonModule, StockChartModule, MatTableModule, MatCardModule, MatProgressBarModule, MatProgressSpinnerModule, TitleDirective],
   providers: [
     DateTimeService,
     LegendService,

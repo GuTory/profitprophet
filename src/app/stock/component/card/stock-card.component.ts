@@ -9,11 +9,15 @@ import {
   ClickStopPropagationDirective
 } from "../../../shared/directive/click-stop-propagation/click-stop-propagation.directive";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {CardAttributeDirective} from "../../../shared/directive/card-attribute/card-attribute.directive";
+import {CardViewDirective} from "../../../shared/directive/card-view/card-view.directive";
+import {PaginationButtonDirective} from "../../../shared/directive/pagination-button/pagination-button.directive";
+import {TitleDirective} from "../../../shared/directive/title/title.directive";
 
 @Component({
   selector: 'app-stock-meta',
   standalone: true,
-  imports: [CommonModule, ClickStopPropagationDirective, RouterLink, MatSnackBarModule],
+  imports: [CommonModule, ClickStopPropagationDirective, RouterLink, MatSnackBarModule, CardAttributeDirective, CardViewDirective, PaginationButtonDirective, TitleDirective],
   providers: [FavoriteService],
   templateUrl: './stock-card.component.html',
   styleUrls: ['./stock-card.component.scss']
@@ -105,5 +109,9 @@ export class StockCardComponent {
       duration: 5000,
       horizontalPosition: 'right',
     });
+  }
+
+  identify(index: number, item: StockMeta){
+    return item.Symbol;
   }
 }

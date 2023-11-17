@@ -1,77 +1,77 @@
 <ng-container *ngIf="stockchartData$ | async as stockchartData; else loadingStockChart">
+  <div class="max-w-screen-lg">
+    <div appTitle>
+      {{ticker}} stock's historical price
+    </div>
 
-  <div
-    class="px-16 pt-12 pb-6 text-6xl font-bold leading-none tracking-tight text-primary">
-    {{ticker}} stock's historical price
-  </div>
+    <div class="px-16">
+      <ejs-stockchart
+        id="chart-container"
+        [title]="title"
+        class="shadow-lg text-primary">
+        <e-stockchart-series-collection>
+          <e-stockchart-series
+            [dataSource]='stockchartData'
+            type='Candle'
+            xName='date'
+            High='high'
+            Low='low'
+            Open='open'
+            Close='close'
+            Name='stockChart'>
+          </e-stockchart-series>
+        </e-stockchart-series-collection>
+      </ejs-stockchart>
 
-  <div class="px-16 max-w-screen-lg">
-    <ejs-stockchart
-      id="chart-container"
-      [title]="title"
-      class="shadow-lg text-primary">
-      <e-stockchart-series-collection>
-        <e-stockchart-series
-          [dataSource]='stockchartData'
-          type='Candle'
-          xName='date'
-          High='high'
-          Low='low'
-          Open='open'
-          Close='close'
-          Name='stockChart'>
-        </e-stockchart-series>
-      </e-stockchart-series-collection>
-    </ejs-stockchart>
+    </div>
+    <div *ngIf="previousClose?.results?.[0] as previous"
+         class="px-16 pt-12 pb-6 text-primary">
+      <mat-card>
+        <mat-card-content>
+          <div
+            class="pt-6 pb-6 text-3xl">
+            Recent data of {{ticker}}
+          </div>
+          <div>
+            The open price: {{previous?.o | currency: 'USD': 'symbol'}}
+          </div>
+          <div>
+            The highest price: {{previous?.h | currency: 'USD': 'symbol'}}
+          </div>
+          <div>
+            The lowest price: {{previous?.l | currency: 'USD': 'symbol'}}
+          </div>
+          <div>
+            The close price: {{previous?.c | currency: 'USD': 'symbol'}}
+          </div>
+          <div>
+            The volume weighted average price: {{previous?.vw | currency: 'USD': 'symbol'}}
+          </div>
+          <div>
+            The trading volume: {{previous?.v }}
+          </div>
 
-  </div>
-  <div *ngIf="previousClose?.results?.[0] as previous"
-       class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
-    <mat-card>
-      <mat-card-content>
-        <div
-          class="pt-6 pb-6 text-3xl">
-          Recent data of {{ticker}}
-        </div>
-        <div>
-          The open price: {{previous?.o | currency: 'USD': 'symbol'}}
-        </div>
-        <div>
-          The highest price: {{previous?.h | currency: 'USD': 'symbol'}}
-        </div>
-        <div>
-          The lowest price: {{previous?.l | currency: 'USD': 'symbol'}}
-        </div>
-        <div>
-          The close price: {{previous?.c | currency: 'USD': 'symbol'}}
-        </div>
-        <div>
-          The volume weighted average price: {{previous?.vw | currency: 'USD': 'symbol'}}
-        </div>
-        <div>
-          The trading volume: {{previous?.v }}
-        </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
 
-      </mat-card-content>
-    </mat-card>
-  </div>
-
-  <div *ngIf="this.prediction$ | async as prediction; else loadingPrediction"
-                class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
-    <mat-card>
-      <mat-card-content>
-        <div
-          class="pt-6 pb-6 text-3xl">
-          Profit Prophet's prediction
-        </div>
-        {{prediction | currency: 'USD': 'symbol'}}
-      </mat-card-content>
-    </mat-card>
+    <div *ngIf="this.prediction$ | async as prediction; else loadingPrediction"
+         class="px-16 pt-12 pb-6 text-primary">
+      <mat-card>
+        <mat-card-content>
+          <div
+            class="pt-6 pb-6 text-3xl">
+            Profit Prophet's prediction
+          </div>
+          {{prediction | currency: 'USD': 'symbol'}}
+        </mat-card-content>
+      </mat-card>
+    </div>
   </div>
 </ng-container>
 
 <ng-template #loadingPrediction>
-  <div class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+  <div class="px-16 pt-12 pb-6 text-primary">
     <mat-card>
       <mat-card-content>
         <div
@@ -90,7 +90,7 @@
     Loading {{ticker}} stock's historical price
   </div>
 
-  <div class="px-16 max-w-screen-lg">
+  <div class="px-16">
     <mat-card>
       <mat-card-content>
         <div
@@ -102,7 +102,7 @@
     </mat-card>
   </div>
 
-  <div class="px-16 pt-12 pb-6 text-primary max-w-screen-lg">
+  <div class="px-16 pt-12 pb-6 text-primary">
     <mat-card>
       <mat-card-content>
         <div
