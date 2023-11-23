@@ -2,7 +2,7 @@
   <div appTitle>
     Stock List
   </div>
-  <ng-container *ngIf="stocks">
+  <ng-container *ngIf="stocks$ | async | document as stocks; else CardsErrorPage">
     <div *ngFor="let stock of stocks; trackBy: identify" appCardView (click)="viewStockHistory(stock)">
       <div class="px-6 py-4">
         <div class="font-bold text-xl mb-2">
@@ -35,18 +35,28 @@
           </span>
       </div>
     </div>
+    <div class="mx-8 my-3 max-w-xl flex flex-row justify-between">
+      <button (click)="prevPage()"
+              [disabled]="paging === 0"
+              appPaginationButton
+              class="border disabled:duration-500 disabled:opacity-50">
+        Previous
+      </button>
+      <button (click)="nextPage()"
+              appPaginationButton
+              class="border hover:duration-500">
+        Next
+      </button>
+    </div>
   </ng-container>
-  <div class="mx-8 my-3 max-w-xl flex flex-row justify-between">
-    <button (click)="prevPage()"
-            [disabled]="paging === 0"
-            appPaginationButton
-            class="border disabled:duration-500 disabled:opacity-50">
-      Previous
-    </button>
-    <button (click)="nextPage()"
-            appPaginationButton
-            class="border hover:duration-500">
-      Next
-    </button>
-  </div>
 </div>
+
+<ng-template #CardsErrorPage>
+  <div *ngIf="error$ as error" appCardView (click)="tryToFetchData()">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl">
+        Unable to fetch data (tap to retry)
+      </div>
+    </div>
+  </div>
+</ng-template>
