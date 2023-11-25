@@ -3,7 +3,7 @@
 
 Angular application to show your favorite company's stoch price and historical data, and predict the future price for you.
 
-The magic of predicting happens at https://github.com/GuTory/profitprophetbackend. 
+The magic of predicting happens at https://github.com/GuTory/profitprophetbackend and https://github.com/GuTory/profit_prophet_data_processing. 
 
 ![image](https://github.com/GuTory/profitprophetfrontend/assets/77408486/a3ced78f-21cb-49f0-8c7e-9dfa48a2ca0f)
 *This landing screen greets the user as the page is loaded, Google authentication is provided*
