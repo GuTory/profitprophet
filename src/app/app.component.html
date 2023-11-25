@@ -1,4 +1,4 @@
-<mat-drawer-container class="h-screen">
+<mat-drawer-container *ngIf="isWindowBigEnough" class="h-screen">
   <mat-drawer #drawer class="p-6" mode="side">
     <app-drawer></app-drawer>
   </mat-drawer>
@@ -10,8 +10,21 @@
              alt="chevron-left"/>
       </button>
     </div>
-    <div>
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
+
+
+<div *ngIf="!isWindowBigEnough">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <button mat-icon-button>
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-drawer></app-drawer>
+  </mat-expansion-panel>
+  <router-outlet></router-outlet>
+</div>

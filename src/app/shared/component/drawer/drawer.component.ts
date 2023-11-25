@@ -22,6 +22,12 @@ export class DrawerComponent {
   private router = inject(Router);
   private authService = inject(AuthService);
 
+  menuItems = [
+    'Favorite Stocks',
+    'My Stocks',
+    'Wallet',
+  ];
+
   ticker = new FormControl('');
   authenticatedUser: UserInterface | null = null;
 

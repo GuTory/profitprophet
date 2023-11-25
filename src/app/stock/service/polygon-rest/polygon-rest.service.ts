@@ -11,7 +11,6 @@ export class PolygonRestService {
   rest: IRestClient = restClient(environment.polygonApiKey)
 
   getPreviousClose(ticker: string): Observable<IAggsPreviousClose> {
-    console.log(ticker);
     return from(this.rest.stocks.previousClose(ticker));
   }
 }
