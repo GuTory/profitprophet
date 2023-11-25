@@ -1,19 +1,33 @@
-import {Component, inject, Inject} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {CommonModule, DOCUMENT} from '@angular/common';
 import {StockMeta} from "../../model/stock-meta.class";
 import {StockMetaService} from "../../service/meta/stock-meta.service";
-import {take} from "rxjs";
+import {catchError, ignoreElements, Observable, of, Subject, take, tap} from "rxjs";
 import {Router, RouterLink} from '@angular/router';
 import {FavoriteService} from 'app/stock/service/favorite/favorite.service';
 import {
   ClickStopPropagationDirective
 } from "../../../shared/directive/click-stop-propagation/click-stop-propagation.directive";
 import {MatSnackBar, MatSnackBarModule} from "@angular/material/snack-bar";
+import {CardAttributeDirective} from "../../../shared/directive/card-attribute/card-attribute.directive";
+import {CardViewDirective} from "../../../shared/directive/card-view/card-view.directive";
+import {PaginationButtonDirective} from "../../../shared/directive/pagination-button/pagination-button.directive";
+import {TitleDirective} from "../../../shared/directive/title/title.directive";
+import {DocumentPipe} from "../../../shared/pipe/document.pipe";
 
 @Component({
   selector: 'app-stock-meta',
   standalone: true,
-  imports: [CommonModule, ClickStopPropagationDirective, RouterLink, MatSnackBarModule],
+  imports: [
+    CommonModule,
+    ClickStopPropagationDirective,
+    RouterLink,
+    MatSnackBarModule,
+    CardAttributeDirective,
+    CardViewDirective,
+    PaginationButtonDirective,
+    TitleDirective,
+    DocumentPipe],
   providers: [FavoriteService],
   templateUrl: './stock-card.component.html',
   styleUrls: ['./stock-card.component.scss']
@@ -25,40 +39,39 @@ export class StockCardComponent {
   public favoriteService = inject(FavoriteService);
   private snackBar = inject(MatSnackBar);
 
-  public stocks: StockMeta[] = [];
+  public stocksList: StockMeta[] = [];
+  public stocks$: Observable<any[] | null> = this.stockMetaService.getStocksByPage();
+  public error$ = this.stocks$
+    .pipe(
+      ignoreElements(),
+      catchError((error) => of(error)
+      )
+    );
   public paging: number = 0;
 
-  constructor() {
-    this.stockMetaService.getStocksByPage()
-      .pipe(take(1))
-      .subscribe((stocks) => {
-        stocks.forEach((stock) => {
-          this.stocks.push(new StockMeta(stock));
-        });
-      });
-  }
-
   nextPage() {
-    this.stocks = [];
+    this.stocksList = [];
     this.stockMetaService.getNextPage()
       .pipe(take(1))
       .subscribe((stocks) => {
         stocks.forEach((stock) => {
-          this.stocks.push(new StockMeta(stock));
+          this.stocksList.push(new StockMeta(stock));
         });
+        this.stocks$ = of(stocks);
         this.paging++;
       });
   }
 
   prevPage() {
     if (this.paging > 0) {
-      this.stocks = [];
+      this.stocksList = [];
       this.stockMetaService.getPreviousPage()
         .pipe(take(1))
         .subscribe((stocks) => {
           stocks.forEach((stock) => {
-            this.stocks.push(new StockMeta(stock));
+            this.stocksList.push(new StockMeta(stock));
           });
+          this.stocks$ = of(stocks);
           this.paging--;
         });
     }
@@ -105,5 +118,13 @@ export class StockCardComponent {
       duration: 5000,
       horizontalPosition: 'right',
     });
+  }
+
+  identify(index: number, item: StockMeta) {
+    return item.Symbol;
+  }
+
+  tryToFetchData(){
+    this.stocks$ = this.stockMetaService.getStocksByPage();
   }
 }

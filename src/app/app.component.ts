@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {PolygonRestService} from "./stock/service/polygon-rest/polygon-rest.service";
@@ -17,6 +17,10 @@ import {FormControl, ReactiveFormsModule} from "@angular/forms";
 import {SidenavDirective} from "./shared/directive/sidenav/sidenav.directive";
 import {StockMetaService} from "./stock/service/meta/stock-meta.service";
 import {DrawerComponent} from "./shared/component/drawer/drawer.component";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatExpansionModule} from "@angular/material/expansion";
 
 const openCloseAnimation = trigger('openClose', [
   state('open', style({transform: 'rotate(0)'})),
@@ -41,6 +45,10 @@ const openCloseAnimation = trigger('openClose', [
     ReactiveFormsModule,
     SidenavDirective,
     DrawerComponent,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatExpansionModule,
   ],
   providers: [PolygonRestService, DateTimeService, TooltipService, StockMetaService],
   templateUrl: './app.component.html',
@@ -52,8 +60,21 @@ const openCloseAnimation = trigger('openClose', [
 export class AppComponent {
   title = 'Profit Prophet';
   sideNavState = 'close';
+  toolbarState = 'close';
+  isWindowBigEnough = false;
 
-  constructor() {}
+  constructor() {
+    this.checkWindowSize();
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event): void {
+    this.checkWindowSize();
+  }
+
+  private checkWindowSize(): void {
+    this.isWindowBigEnough = window.innerWidth > 800;
+  }
 
   toggleSideNav() {
     this.sideNavState = this.sideNavState === 'close' ? 'open' : 'close';

@@ -5,11 +5,14 @@ import {Observable, switchMap} from "rxjs";
 import {StockMeta} from "../../model/stock-meta.class";
 import {StockMetaService} from "../../service/meta/stock-meta.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {CardAttributeDirective} from "../../../shared/directive/card-attribute/card-attribute.directive";
+import {CardViewDirective} from "../../../shared/directive/card-view/card-view.directive";
+import {TitleDirective} from "../../../shared/directive/title/title.directive";
 
 @Component({
   selector: 'app-searchresult',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CardAttributeDirective, CardViewDirective, TitleDirective],
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss']
 })
