@@ -8,13 +8,11 @@
       </div>
     </ng-container>
 
-    <form class="stock-search">
-      <form (ngSubmit)="searchTicker()">
-        <mat-form-field class="example-full-width">
-          <mat-label>Ticker Lookup</mat-label>
-          <input matInput [formControl]="ticker" placeholder="Start typing a ticker...">
-        </mat-form-field>
-      </form>
+    <form (ngSubmit)="searchTicker()" class="stock-search">
+      <mat-form-field class="example-full-width">
+        <mat-label>Ticker Lookup</mat-label>
+        <input matInput [formControl]="ticker" placeholder="Start typing a ticker...">
+      </mat-form-field>
     </form>
     <div appSidenav>Favorite Stocks</div>
     <div appSidenav>My Stocks</div>
