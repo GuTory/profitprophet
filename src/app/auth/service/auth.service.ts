@@ -5,7 +5,7 @@ import {BehaviorSubject, Observable, of, Subject, switchMap} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {HttpClient} from '@angular/common/http';
 import {mapSocialUserToUserInterface, UserInterface} from "../model/user.interface";
-import {environment} from "../../../environments/environment.development";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
   providedIn: 'root'

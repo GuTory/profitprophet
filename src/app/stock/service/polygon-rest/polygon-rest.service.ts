@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {IAggsPreviousClose, IRestClient, restClient} from '@polygon.io/client-js';
-import {environment} from "../../../../environments/environment.development";
+import {environment} from "../../../../environments/environment";
 import {from, Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 

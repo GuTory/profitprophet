@@ -3,7 +3,7 @@ import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
 import {GoogleLoginProvider, SocialAuthServiceConfig} from "@abacritt/angularx-social-login";
-import {environment} from "../environments/environment.development";
+import {environment} from "../environments/environment";
 import { provideAnimations } from '@angular/platform-browser/animations';
 import {provideHttpClient} from "@angular/common/http";
 

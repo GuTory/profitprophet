@@ -17,5 +17,9 @@ export const routes: Routes = [
   {
     path: 'searchticker/:ticker',
     loadComponent: () => import('./stock/component/searchresult/search-result.component').then(m => m.SearchResultComponent),
+  },
+  {
+    path: 'profile',
+    loadComponent: () => import('./profile/component/profile.component').then(m => m.ProfileComponent),
   }
 ];

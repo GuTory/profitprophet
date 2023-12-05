@@ -1,0 +1,31 @@
+<ng-container *ngIf="user$ | async as user">
+  <div appTitle>
+    Profile
+  </div>
+  <div class="mx-8 my-3 max-w-xl rounded overflow-hidden shadow-lg bg-gray-100">
+    <div class="px-6 py-4">
+      <div class="font-bold text-xl mb-2">
+        Name: {{user.name}}
+      </div>
+      <div class="text-gray-700 text-base">
+        Email: {{user.email}}
+      </div>
+      <div class="text-gray-700 text-base">
+        Subscription: {{user.subscription}}
+      </div>
+      <div class="text-gray-700 text-base">
+        Current balance: {{user.balance | currency: 'USD'}}
+      </div>
+    </div>
+    <div class="px-6 py-4">
+      <form (ngSubmit)="uploadMoney()">
+        <mat-form-field>
+          <mat-label>
+            Upload money
+          </mat-label>
+          <input matInput [formControl]="money" placeholder="0"/>
+        </mat-form-field>
+      </form>
+    </div>
+  </div>
+</ng-container>

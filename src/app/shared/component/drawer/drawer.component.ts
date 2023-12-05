@@ -6,14 +6,14 @@ import {SidenavDirective} from "../../directive/sidenav/sidenav.directive";
 import {MatInputModule} from "@angular/material/input";
 
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {Router} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {AuthService} from "../../../auth/service/auth.service";
 import {UserInterface} from "../../../auth/model/user.interface";
 
 @Component({
   selector: 'app-drawer',
   standalone: true,
-  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, SidenavDirective, MatInputModule, FormsModule],
+  imports: [CommonModule, MatFormFieldModule, ReactiveFormsModule, SidenavDirective, MatInputModule, FormsModule, RouterLink],
   providers: [AuthService],
   templateUrl: './drawer.component.html',
   styleUrls: ['./drawer.component.scss']
@@ -49,8 +49,15 @@ export class DrawerComponent {
     if (this.authenticatedUser) {
       this.authService.signOut();
       this.authenticatedUser = null;
+      this.router.navigate(['']);
     } else {
       this.router.navigate(['auth']);
+    }
+  }
+
+  navigateIfLoggedIn() {
+    if (this.authenticatedUser) {
+      this.router.navigate(['profile']);
     }
   }
 }

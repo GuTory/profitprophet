@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnInit, ViewChild} from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {RouterOutlet} from '@angular/router';
 import {PolygonRestService} from "./stock/service/polygon-rest/polygon-rest.service";
@@ -6,14 +6,11 @@ import {DateTimeService, StockChartModule, TooltipService} from "@syncfusion/ej2
 import {AuthComponent} from "./auth/component/auth.component";
 import {StockHistoryComponent} from "./stock/component/history/stock-history.component";
 import {MatButtonModule} from "@angular/material/button";
-import {MatDrawer, MatSidenavModule} from "@angular/material/sidenav";
-import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {animate, state, style, transition, trigger} from "@angular/animations";
-import {StockHistoryService} from "./stock/service/history/stock-history.service";
 import {MatInputModule} from "@angular/material/input";
-import {FormControl, ReactiveFormsModule} from "@angular/forms";
+import { ReactiveFormsModule} from "@angular/forms";
 import {SidenavDirective} from "./shared/directive/sidenav/sidenav.directive";
 import {StockMetaService} from "./stock/service/meta/stock-meta.service";
 import {DrawerComponent} from "./shared/component/drawer/drawer.component";

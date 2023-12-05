@@ -1,4 +1,4 @@
-describe('Tests for the Landing page', () => {
+describe('E2E tests', () => {
 
   const firstPageOfStocks = [
     'Agilent Technologies, Inc. Common Stock',

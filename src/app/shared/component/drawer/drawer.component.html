@@ -1,7 +1,8 @@
 <div class="flex flex-col justify-between h-full">
   <div>
     <ng-container *ngIf="authenticatedUser">
-      <div appSidenav class="flex flex-row items-center mb-4">
+      <div appSidenav class="flex flex-row items-center mb-4"
+      (click)="navigateIfLoggedIn()">
         <img class="w-16 h-16 rounded-full p-2" [src]="authenticatedUser.photoUrl"
              [alt]="authenticatedUser.name" referrerpolicy="no-referrer">
         <div class="ml-4">{{authenticatedUser.name}}</div>

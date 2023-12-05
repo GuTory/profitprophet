@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import {inject, Injectable} from '@angular/core';
-import {environment} from "../../../../environments/environment.development";
+import {environment} from "../../../../environments/environment";
 import {StockHistoryInterface} from "../../model/stock-history.interface";
 import {StockMeta} from "../../model/stock-meta.class";
 

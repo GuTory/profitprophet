@@ -56,8 +56,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "3mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -88,7 +88,9 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "profitProphetFrontend:build:production"
+              "browserTarget": "profitProphetFrontend:build:production",
+              "host": "localhost",
+              "port": 4200
             },
             "development": {
               "browserTarget": "profitProphetFrontend:build:development"
